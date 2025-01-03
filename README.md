@@ -333,7 +333,7 @@ _Dynamic
 
 ## 3. Scripts
 
-This section will focus on C# classes and their internals. When possible, style rules conform to Microsoft's C# standard.
+This section will focus on GDScript classes and their internals.
 
 ### Sections
 > 3.1 [Class Organization](#classorganization)
@@ -346,11 +346,9 @@ This section will focus on C# classes and their internals. When possible, style 
 
 <a name="classorganization"></a>
 ### 3.1 Class Organization
-Source files should contain only one public type, although multiple internal classes are allowed.
+Source files should ALWAYS have a declared `class_name`.
 
-Source files should be given the name of the public class in the file.
-
-Organize namespaces with a clearly defined structure,
+Source files should be given the name of the class in the file.
 
 Class members should be alphabetized, and grouped into sections:
 * signals
