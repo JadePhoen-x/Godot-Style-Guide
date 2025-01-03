@@ -10,7 +10,6 @@ Additionally using the tips provided within the [Official Godot Syle Guide](http
 > 1. [Project Structure](#structure)
 > 1. [Scripts](#scripts)
 > 1. [Asset Naming Conventions](#anc)
-> 1. [Asset Workflows](#asset-workflows)
 
 <a name="introduction"></a>
 ## 1. Introduction
@@ -654,4 +653,94 @@ Bad examples:
 <a name="anc"></a>
 <a name="4"></a>
 
+## 4. Asset Naming Conventions
+Naming conventions should be treated as law. A project that conforms to a naming convention is able to have its assets managed, searched, parsed, and maintained with incredible ease.
+
+Most things are prefixed with the prefix generally being an acronym of the asset type followed by an underscore.
+
+**Assets use [snake_case](#cases)**
+
+<a name="base-asset-name"></a>
+<a name="4.1"></a>
+### 4.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+All assets should have a _Base Asset Name_. A Base Asset Name represents a logical grouping of related assets. Any asset that is part of this logical group 
+should follow the the standard of  `prefix_baseAssetName_variant_suffix`.
+
+Keeping the pattern `prefix_baseAssetName_variant_suffix` in mind and using common sense is generally enough to warrant good asset names. Here are some detailed rules regarding each element.
+
+`prefix` and `suffix` are to be determined by the asset type through the following [Asset Name Modifier](#asset-name-modifiers) tables.
+
+`baseAssetName` should be determined by short and easily recognizable name related to the context of this group of assets. For example, if you had a character named Bob, all of Bob's assets would have the `BaseAssetName` of `bob`.
+
+For unique and specific variations of assets, `variant` is either a short and easily recognizable name that represents logical grouping of assets that are a subset of an asset's base name. For example, if Bob had multiple skins these skins should still use `bob` as the `baseAssetName` but include a recognizable `variant`. An 'Evil' skin would be referred to as `bob_evil` and a 'Retro' skin would be referred to as `bob_retro`.
+
+For unique but generic variations of assets, `variant` is a two digit number starting at `01`. For example, if you have an environment artist generating nondescript rocks, they would be named `rock_01`, `rock_02`, `rock_03`, etc. Except for rare exceptions, you should never require a three digit variant number. If you have more than 100 assets, you should consider organizing them with different base names or using multiple variant names.
+
+Depending on how your asset variants are made, you can chain together variant names. For example, if you are creating flooring assets for an Arch Viz project you should use the base name `flooring` with chained variants such as `flooring_marble_01`, `flooring_maple_01`, `flooring_tile_squares_01`.
+
+<a name="1.1-examples"></a>
+#### Examples
+
+##### Character
+
+| Asset Type               | Asset Name   |
+| ------------------------ | ------------ |
+| Skeletal Mesh            | sk_bob       |
+| Material                 | m_bob        |
+| Texture (Diffuse/Albedo) | t_bob_d      |
+| Texture (Normal)         | t_bob_n      |
+| Texture (Evil Diffuse)   | t_bob_evil_d |
+
+##### Prop
+
+| Asset Type               | Asset Name   |
+| ------------------------ | ------------ |
+| Static Mesh (01)         | sm_rock_01   |
+| Static Mesh (02)         | sm_rock_02   |
+| Static Mesh (03)         | sm_rock_03   |
+| Material                 | m_rock       |
+| Material Instance (Snow) | mi_rock_snow |
+
+<a name="asset-name-modifiers"></a>
+
+<a name="asset-name-modifiers"></a>
+### 4.2 Asset Name Modifiers
+
+When naming an asset use the following table to help determine the prefix and suffix to use with an asset's [Base Asset Name](#base-asset-name).
+
+> IMPORTANT: The following table is not all encompasing. Feel free to make suggestions as to possible prefixes to add.
+
+#### Most Common Prefixes
+
+| Asset Type              | Prefix     | Suffix     | Notes                            |
+| ----------------------- | ---------- | ---------- | -------------------------------- |
+| Level           	  |  *         |            | [Should be in a folder called Levels.](#levels) e.g. `Levels/A4_C17_Parking_Garage.unity` |
+| Level (Persistent)      |            | _p         |                                  |
+| Level (Audio)           |            | _audio     |                                  |
+| Level (Lighting)        |            | _lighting  |                                  |
+| Level (Geometry)        |            | _geo       |                                  |
+| Level (Gameplay)        |            | _gameplay  |                                  |
+| Trigger Area            |            | _trigger   |                                  |
+| Material                | m_         |            |                                  |
+| Static Mesh             | sm_        |            |                                  |
+| Skeletal Mesh           | sk_        |            |                                  |
+| Texture                 | t_         | _?         | See [Textures](#anc-textures)    |
+| Visual Effects          | vfx_       |            |                                  |
+| Particle System         | ps_        |            |                                  |
+| Light                   | l_         |            |                                  |
+| Characters    | ch_    |        |       |
+| Vehicles      | vh_    |        |       |
+| Weapons       | wp_    |        |       |
+| Static Mesh   | sm_    |        |       |
+| Skeletal Mesh | sk_    |        |       |
+| Skeleton      | skel_  |        |       |
+| Mesh          |        | _mesh_lod0* | Only use LOD suffix if model uses LOD's |
+| Mesh Collider |        | _collider   |                                         |
+| Animation Library | al_    |        |       |
+| AI / NPC                | ai_        |  _npc          |   *Npc could be pawn of CH_ !AI_                          |
+| Material          | m_     |        |       |
+| Material Instance | mi_    |        |       |
+| Texture                 | t_         |            |                                  |
+
+<a name="anc-textures-packing"></a>
 
