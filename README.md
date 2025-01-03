@@ -1,6 +1,8 @@
 # Godot-Style-Guide
 My personal style guide for projects made in Godot while using GDScript. 
+
 Heavily inspired/borrowing [Justin Wasilenko's Unity Style Guide](https://github.com/justinwasilenko/Unity-Style-Guide/blob/master/README.md?plain=1#cases) formatting and advice.
+
 Additionally using the tips provided within the [Official Godot Syle Guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html) for GDScript.
 
 <a name="toc"></a>
