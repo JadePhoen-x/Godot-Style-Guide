@@ -97,8 +97,6 @@ res://
               music
               sfx
           fonts
-          materials
-          shaders
           themes
       scenes
           autoload
