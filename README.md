@@ -88,33 +88,32 @@ res://
       dev_name
           (Work in progress and testing assets)
   addons
-  <a name="structure-top-level">project_name</a>
-      material_library
-          debug
-          shaders
-      resources
-          audio
-              music
-              sfx
-          fonts
-          themes
-      scenes
-          autoload
-              game_events
-          components
-          gameplay
-              characters
-                  player
-                      (Scripts, Models, Textures, Materials, Scene)
-              equipment
-          <a name="#structure-levels">levels</a>
-              main_menu
-              level_1
-              level_2
-          objects
-              architecture (Single use large set pieces)
-              props (Small repeating objects)
-          ui
+  material_library
+	  debug
+	  shaders
+  resources
+	  audio
+		  music
+		  sfx
+	  fonts
+	  themes
+  scenes
+	  autoload
+		  game_events
+	  components
+	  gameplay
+		  characters
+			  player
+				  (Scripts, Models, Textures, Materials, Scene)
+		  equipment
+	  <a name="#structure-levels">levels</a>
+		  main_menu
+		  level_1
+		  level_2
+	  objects
+		  architecture (Single use large set pieces)
+		  props (Small repeating objects)
+	  ui
     scripts
 </pre>
 
@@ -124,21 +123,19 @@ This structure is explained in the following sub-sections.
 
 > 2.1 [Folder Names](#structure-folder-names)
 
-> 2.2 [Top-Level Folders](#structure-top-level)
+> 2.2 [Developer Folders](#structure-developers)
 
-> 2.3 [Developer Folders](#structure-developers)
+> 2.3 [Levels](#levels)
 
-> 2.4 [Levels](#levels)
+> 2.4 [Define Ownership](#structure-ownership)
 
-> 2.5 [Define Ownership](#structure-ownership)
+> 2.5 [`Assets` and `AssetTypes`](#structure-assettypes)
 
-> 2.6 [`Assets` and `AssetTypes`](#structure-assettypes)
+> 2.6 [Large Sets](#structure-large-sets)
 
-> 2.7 [Large Sets](#structure-large-sets)
+> 2.7 [Material Library](#structure-material-library)
 
-> 2.8 [Material Library](#structure-material-library)
-
-> 2.9 [Scene Structure](#scene-structure)
+> 2.8 [Scene Structure](#scene-structure)
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
@@ -176,52 +173,8 @@ If you find that the content browser has an empty folder you can't delete, you s
 1. Submit changes to source control.
 
 <a name="2.2"></a>
-<a name="structure-top-level"><a>
-### 2.2 Use A Top Level Folder For Project Specific Assets
-All of a project's assets should exist in a folder named after the project. For example, if your project is named 'Generic Shooter', _all_ of it's content should exist in `Assets/GenericShooter`.
-
-> The `_dev` folder is not for assets that your project relies on and therefore is not project specific. See [Developer Folders](#2.3) for details about this.
-
-There are multiple reasons for this approach.
-
-<a name="2.2.1"></a>
-#### No Global Assets
-Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
-
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should be put in a [`Developer`](#2.3) folder.
-
-<a name="2.2.2"></a>
-#### Reduce Migration Conflicts
-When working on multiple projects it is common for a team to copy assets from one project to another if they have made something useful for both. 
-
-By placing all project specific assets in a top level folder you reduce the chance of migration conflict when importing those assets into a new project.
-
-<a name="2.2.2e1"></a>
-##### Master Material Example
-For example, say you created a master material in one project that you would like to use in another project so you migrated that asset over. If this asset is not in a top level folder, it may have a name like `Assets/MaterialLibrary/M_Master`. If the target project doesn't have a master material already, this should work without issue.
-
-As work on one or both projects progress their respective master materials may change to be tailored for their specific projects due to the course of normal development.
-
-The issue comes when, for example, an artist for one project created a nice generic modular set of static meshes and someone wants to include that set of static meshes in the second project. If the artist who created the assets used material instances based on `Assets/MaterialLibrary/M_Master` as they're instructed to, when a migration is performed there is a great chance of conflict for the previously migrated `Assets/MaterialLibrary/M_Master` asset.
-
-This issue can be hard to predict and hard to account for. The person migrating the static meshes may not be the same person who is familiar with the development of both project's master material, and they may not be even aware that the static meshes in question rely on material instances which then rely on the master material. The Migrate tool requires the entire chain of dependencies to work however, and so it will be forced to grab `Assets/MaterialLibrary/M_Master` when it copies these assets to the other project and it will overwrite the existing asset.
-
-It is at this point where if the master materials for both projects are incompatible in _any way_, you risk breaking possibly the entire material library for a project as well as any other dependencies that may have already been migrated, simply because assets were not stored in a top level folder. The simple migration of static meshes now becomes a very ugly task.
-
-<a name="2.2.3"></a>
-#### Samples, Templates, and 3rd Party Content Are Risk-Free
-An extension to [2.2.2](#2.2.2), if a team member decides to add sample content, template files, or assets they bought from a 3rd party, it is guaranteed that these new assets will not interfere with the project in any way unless your project's top level folder is not uniquely named.
-
-You can not trust 3rd party content to fully conform to the [top level folder rule](#2.2). There exist many assets that have the majority of their content in a top level folder but also have possibly modified Unity sample content as well as level files polluting the global `Assets` folder.
-
-When adhering to [2.2](#2.2), the worst 3rd party conflict you can have is if two 3rd party assets both have the same sample content. If all your assets are in a project specific folder, including sample content you may have moved into your folder, your project will never break.
-
-#### DLC, Sub-Projects, and Patches Are Easily Maintained
-If your project plans to release DLC or has multiple sub-projects associated with it that may either be migrated out or simply not cooked in a build, assets relating to these projects should have their own separate top level content folder. This make cooking DLC separate from main project content far easier. Sub-projects can also be migrated in and out with minimal effort. If you need to change a material of an asset or add some very specific asset override behavior in a patch, you can easily put these changes in a patch folder and work safely without the chance of breaking the core project.
-
-<a name="2.3"></a>
 <a name="structure-developers"></a>
-### 2.3 Use Developers Folder For Local Testing
+### 2.2 Use Developers Folder For Local Testing
 During a project's development, it is very common for team members to have a sort of 'sandbox' where they can experiment freely without risking the core project. Because this work may be ongoing, these team members may wish to put their assets on a project's source control server. Not all teams require use of Developer folders, but ones that do use them often run into a common problem with assets submitted to source control.
 
 It is very easy for a team member to accidentally use assets that are not ready for use which will cause issues once those assets are removed. For example, an artist may be iterating on a modular set of static meshes and still working on getting their sizing and grid snapping correct. If a world builder sees these assets in the main project folder, they might use them all over a level not knowing they could be subject to incredible change and/or removal. This causes massive amounts of re-working by everyone on the team to resolve.
@@ -231,27 +184,27 @@ If these modular assets were placed in a Developer folder, the world builder sho
 Once the assets are ready for use, an artist simply has to move the assets into the project specific folder. This is essentially 'promoting' the assets from experimental to production.
 
 <a name="levels"></a>
-### 2.4 All [Level](#terms-level-map) Files Belong In A Folder Called Levels
+### 2.3 All [Level](#terms-level-map) Files Belong In A Folder Called Levels
 Level files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `//res:/project_name/levels`.
 
 Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `levels`, such as `levels/campaign_1/` or `levels/arenas`, but the most important thing here is that they all exist within `//res:/project_name/levels`.
 
 This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's levels are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well QA processes.
 
-<a name="2.5"></a>
+<a name="2.4"></a>
 <a name="structure-ownership"></a>
-### 2.5 Define Ownership
+### 2.4 Define Ownership
 In teams of more than one, define ownership of zone/assets/features. Some assets like scenes do not handle simultaneous changes by multiple people very well, creating conflict. Having a single person who can change (or give the right to change) a given assets helps to avoid that problem.
 
-<a name="2.6"></a>
+<a name="2.5"></a>
 <a name="structure-assettypes"></a>
-### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes`
+### 2.5 Do Not Create Folders Called `Assets` or `AssetTypes`
 
-<a name="2.6.1"></a>
+<a name="2.5.1"></a>
 #### Creating a folder named `Assets` is redundant.
 All assets are assets.
 
-<a name="2.6.2"></a>
+<a name="2.5.2"></a>
 #### Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant.
 All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
 
@@ -261,21 +214,21 @@ Want to view only static mesh in `environment/rocks/`? Simply turn on the Static
 
 Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `materials` folder.
 
-<a name="2.7"></a>
+<a name="2.6"></a>
 <a name="structure-large-sets"></a>
-### 2.7 Very Large Asset Sets Get Their Own Folder Layout
+### 2.6 Very Large Asset Sets Get Their Own Folder Layout
 
-This can be seen as a pseudo-exception to [2.6](#2.6).
+This can be seen as a pseudo-exception to [2.5](#2.6).
 
 There are certain asset types that have a huge volume of related files where each asset has a unique purpose. The two most common are Animation and Audio assets. If you find yourself having 15+ of these assets that belong together, they should be together.
 
 For example, animations that are shared across multiple characters should lay in `characters/common/animations` and may have sub-folders such as `locomotion` or `cinematic`.
 
-> This does not apply to assets like textures and materials. It is common for a `rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.8).
+> This does not apply to assets like textures and materials. It is common for a `rocks` folder to have a large amount of textures if there are a large amount of rocks, however these textures are generally only related to a few specific rocks and should be named appropriately. Even if these textures are part of a [Material Library](#2.7).
 
-<a name="2.8"></a>
+<a name="2.7"></a>
 <a name="structure-material-library"></a>
-### 2.8 `MaterialLibrary`
+### 2.7 `MaterialLibrary`
 
 If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `//res:/project_name/material_library`.
 
@@ -288,9 +241,9 @@ The `material_library` doesn't have to consist of purely materials. Shared utili
 Any testing or debug materials should be within `material_library/debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
 
 
-<a name="2.9"></a>
+<a name="2.8"></a>
 <a name="scene-structure"></a>
-## 2.9 Scene Structure
+## 2.8 Scene Structure
 Next to the project’s hierarchy, there’s also scene hierarchy. Use named Node/Node2D/Node3D nodes as scene folders.
 
 > Nodes in a scene should be ordered within their respective group using the following order based on inheritance unless otherwise required: Node > Control > Node2D > Node3D
