@@ -84,37 +84,37 @@ The directory structure style of a project should be considered law. Asset namin
 > IMPORTANT: Development Assets (work in progress or testing assets contained in `_Dev`) should always be prefixed with a `_` to make it easy when configuring things in the inspector
 <pre>
 res://
-  <a name="#structure-developers">_dev</a>(Use a `_`to keep this folder at the top)
-      dev_name
-          (Work in progress and testing assets)
-  addons
-  material_library
-	  debug
-	  shaders
-  resources
-	  audio
-		  music
-		  sfx
-	  fonts
-	  themes
-  scenes
-	  autoload
-		  game_events
-	  components
-	  gameplay
-		  characters
-			  player
-				  (Scripts, Models, Textures, Materials, Scene)
-		  equipment
-	  <a name="#structure-levels">levels</a>
-		  main_menu
-		  level_1
-		  level_2
-	  objects
-		  architecture (Single use large set pieces)
-		  props (Small repeating objects)
-	  ui
-    scripts
+	<a name="#structure-developers">_dev</a>(Use a `_`to keep this folder at the top)
+		  dev_name
+			  	(Work in progress and testing assets)
+	addons
+	material_library
+		debug
+		shaders
+	resources
+		audio
+			music
+			sfx
+		fonts
+		themes
+	scenes
+		autoload
+			game_events
+		components
+		gameplay
+			characters
+				player
+					(Scripts, Models, Textures, Materials, Scene)
+			equipment
+		<a name="#structure-levels">levels</a>
+			main_menu
+			level_1
+			level_2
+		objects
+			architecture (Single use large set pieces)
+			props (Small repeating objects)
+		ui
+	scripts
 </pre>
 
 This structure is explained in the following sub-sections.
