@@ -667,12 +667,13 @@ When naming an asset use the following table to help determine the prefix and su
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Level           	  	  |  *         |            | [Should be in a folder called Levels.](#levels) e.g. `Levels/A4_C17_Parking_Garage.unity` |
 | Level (Persistent)      |            | _p         |                                  |
-| Level (Audio)           |            | _audio     |                                  |
+| Level (Audio)           |            | _audio     | Note: different from Audio Stream assets, used for level specific Audio such as music |
 | Level (Lighting)        |            | _lighting  |                                  |
 | Level (Geometry)        |            | _geo       |                                  |
 | Level (Gameplay)        |            | _gameplay  |                                  |
 | Trigger Area            |            | _trigger   |                                  |
 | Material                | m_         |            |                                  |
+| Audio Stream		  | as_		| 	    |					|
 | Static Mesh             | sm_        |            |                                  |
 | Skeletal Mesh           | sk_        |            |                                  |
 | Texture                 | t_         | _?         | See [Textures](#anc-textures)    |
