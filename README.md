@@ -665,7 +665,7 @@ When naming an asset use the following table to help determine the prefix and su
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
-| Level           	  	  |  *         |            | [Should be in a folder called Levels.](#levels) e.g. `Levels/A4_C17_Parking_Garage.unity` |
+| Level           	  	  |  *         |            | [Should be in a folder called Levels.](#levels) e.g. `levels/a4_c17_parking_garage.tscn` |
 | Level (Persistent)      |            | _p         |                                  |
 | Level (Audio)           |            | _audio     | Note: different from Audio Stream assets, used for level specific Audio such as music |
 | Level (Lighting)        |            | _lighting  |                                  |
