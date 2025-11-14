@@ -320,12 +320,12 @@ Class members should be alphabetized, and grouped into sections:
 > For an example script using these principles, refer to the included script_example.gd within the repository.
 
 #### All Public Methods Should Have A Summary
-Any method intended to be used by another script should have a comment above its declaration that explains its purpose. While in C# XML summaries can be used, we simply make do with comments.
+Any method intended to be used by another script should have a comment above its declaration that explains its purpose, _unless that purpose is explicitly obvious_. While in C# XML summaries can be used, we simply make do with comments.
 
 ```
-# Makes the player attack
-func attack() -> void:
-    # attack
+# Charges up the player's attack
+func charge_up() -> void:
+    # logic
 ```
 
 #### Foldout Groups
